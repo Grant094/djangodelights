@@ -6,3 +6,7 @@ class Ingredient(models.Model):
     quantity = models.FloatField(default=0.0)
     unit = models.CharField()
     unit_price = models.FloatField(default=0.0)
+
+class MenuItem(models.Model):
+    title = models.CharField()
+    price = models.FloatField(default=0.0)
