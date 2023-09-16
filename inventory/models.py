@@ -2,13 +2,13 @@ from django.db import models
 
 # Create your models here.
 class Ingredient(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=30)
     quantity = models.FloatField(default=0.0)
-    unit = models.CharField()
+    unit = models.CharField(max_length=30)
     unit_price = models.FloatField(default=0.0)
 
 class MenuItem(models.Model):
-    title = models.CharField()
+    title = models.CharField(max_length=30)
     price = models.FloatField(default=0.0)
 
 class RecipeRequirement(models.Model):
