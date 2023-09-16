@@ -8,7 +8,7 @@ class Ingredient(models.Model):
     unit_price = models.FloatField(default=0.0)
 
     def __str__(self):
-        return self.name
+        return str(self.quantity) + " " + self.unit + " of " + self.name
 
 class MenuItem(models.Model):
     title = models.CharField(max_length=30)
@@ -16,6 +16,14 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def recipeRequirements(self):
+        to_return = []
+        allRecipeRequirements = RecipeRequirement.objects.all()
+        for requirement in allRecipeRequirements:
+            if requirement.menu_item.id == self.id:
+                to_return.append(requirement)
+        return to_return
 
 class RecipeRequirement(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
