@@ -4,7 +4,7 @@ from django.db import models
 class Ingredient(models.Model):
     name = models.CharField(max_length=30)
     quantity = models.FloatField(default=0.0)
-    unit = models.CharField(max_length=30)
+    unit = models.CharField(max_length=30, blank=True)
     unit_price = models.FloatField(default=0.0)
 
 class MenuItem(models.Model):
