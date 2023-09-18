@@ -39,3 +39,21 @@ class Purchase(models.Model):
 
     def __str__(self):
         return self.menu_item.title + " at " + str(self.timestamp)
+    
+    def calcRevenue(self):
+        revenue = 0
+        allPurchases = Purchase.objects.all()
+        for purchase in allPurchases:
+            revenue += purchase.menu_item.price
+        return revenue
+    
+    def calcCost(self):
+        cost = 0
+        allPurchases = Purchase.objects.all()
+        for purchase in allPurchases:
+            for requirement in purchase.menu_item.recipeRequirements:
+                cost += requirement.ingredient.price * requirement.quantity
+        return cost
+
+    def calcProfit(self):
+        return self.calcRevenue - self.calcCost
