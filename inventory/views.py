@@ -6,6 +6,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
 
 # Create your views here.
+def home(request):
+    return render(request, "inventory/home.html")
+
 class IngredientList(ListView):
     model = Ingredient
     template_name = "inventory/ingredient_list.html"
