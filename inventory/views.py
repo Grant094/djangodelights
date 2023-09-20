@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from .forms import *
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,6 +14,16 @@ class IngredientList(ListView):
     model = Ingredient
     template_name = "inventory/ingredients.html"
 
+class IngredientCreate(CreateView):
+    model = Ingredient
+    form_class = IngredientCreateForm
+    template_name = "inventory/ingredient_create_form.html"
+
+class IngredientUpdate(UpdateView):
+    model = Ingredient
+    form_class = IngredientUpdateForm
+    template_name = "inventory/ingredient_update_form.html"
+
 class IngredientDelete(DeleteView):
     model = Ingredient
     template_name = "inventory/ingredient_delete_form.html"
@@ -21,9 +32,24 @@ class MenuItemList(ListView):
     model = MenuItem
     template_name = "inventory/menu.html"
 
+class MenuItemCreate(CreateView):
+    model = MenuItem
+    form_class = MenuItemCreateForm
+    template_name = "inventory/menuitem_create_form.html"
+
+class RecipeRequirementCreate(CreateView):
+    model = RecipeRequirement
+    form_class = RecipeRequirementCreateForm
+    template_name = "inventory/reciperequirement_create_form.html"
+
 class PurchaseList(ListView):
     model = Purchase
     template_name = "inventory/purchases.html"
+
+class PurchaseCreate(CreateView):
+    model = Purchase
+    form_class = PurchaseCreateForm
+    template_name = "inventory/purchase_create.html"
 
 class ReportView(TemplateView):
     template_name = "inventory/report.html"

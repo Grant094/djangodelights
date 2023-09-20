@@ -4,6 +4,7 @@
 {% block content %}
     <div>
         <h2>Ingredients</h2>
+        <h3><a href="{% url 'ingredientcreate' %}">Add</a></h3>
         <table>
             <thead>
                 <tr>
@@ -15,7 +16,7 @@
             <tbody>
             {% for ingredient in object_list %}
                 <tr>
-                    <td>{{ ingredient.name }}</td>
+                    <td><a href="{% url 'ingredientupdate' ingredient.pk %}">{{ ingredient.name }}</a></td>
                     <td>{{ ingredient.quantity }} {{ ingredient.unit }}</td>
                     <td>{{ ingredient.unit_price }}</td>
                 </tr>

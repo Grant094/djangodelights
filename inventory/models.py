@@ -10,6 +10,9 @@ class Ingredient(models.Model):
     def __str__(self):
         return str(self.quantity) + " " + self.unit + " of " + self.name
 
+    def get_absolute_url(self):
+        return "../ingredients"
+
 class MenuItem(models.Model):
     title = models.CharField(max_length=30)
     price = models.FloatField(default=0.0)
@@ -24,6 +27,9 @@ class MenuItem(models.Model):
             if requirement.menu_item.id == self.id:
                 to_return.append(requirement)
         return to_return
+    
+    def get_absolute_url(self):
+        return "../menuitems"
 
 class RecipeRequirement(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
@@ -33,9 +39,15 @@ class RecipeRequirement(models.Model):
     def __str__(self):
         return str(self.quantity) + " " + self.ingredient.unit + " " + self.ingredient.name + " for " + self.menu_item.title
 
+    def get_absolute_url(self):
+        return "../"
+
 class Purchase(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.menu_item.title + " at " + str(self.timestamp)
+
+    def get_absolute_url(self):
+        return "../purchases"

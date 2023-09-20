@@ -22,8 +22,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
     path('ingredients', views.IngredientList.as_view(), name="ingredients"),
+    path('ingredient/create', views.IngredientCreate.as_view(), name="ingredientcreate"),
+    path('ingredient/<pk>/update', views.IngredientUpdate.as_view(), name="ingredientupdate"),
     path('ingredient/<pk>/delete', views.IngredientDelete.as_view(), name='ingredient_delete'),
     path('menuitems', views.MenuItemList.as_view(), name="menuitems"),
+    path('menuitem/create', views.MenuItemCreate.as_view(), name="menuitemcreate"),
+    path('reciperequirement/create', views.RecipeRequirementCreate.as_view(), name="reciperequirementcreate"),
     path('purchases', views.PurchaseList.as_view(), name="purchases"),
+    path('purchase/create', views.PurchaseCreate.as_view(), name="purchasecreate"),
     path('report', views.ReportView.as_view(), name="report"),
 ]
