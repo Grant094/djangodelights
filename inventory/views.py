@@ -23,7 +23,7 @@ class MenuItemList(ListView):
 
 class PurchaseList(ListView):
     model = Purchase
-    template_name = "inventory/purchase_list.html"
+    template_name = "inventory/purchases.html"
 
 class ReportView(TemplateView):
     template_name = "inventory/reports.html"
