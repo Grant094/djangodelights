@@ -11,7 +11,7 @@ def home(request):
 
 class IngredientList(ListView):
     model = Ingredient
-    template_name = "inventory/ingredient_list.html"
+    template_name = "inventory/ingredients.html"
 
 class IngredientDelete(DeleteView):
     model = Ingredient
