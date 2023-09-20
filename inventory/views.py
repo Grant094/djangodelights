@@ -19,7 +19,7 @@ class IngredientDelete(DeleteView):
 
 class MenuItemList(ListView):
     model = MenuItem
-    template_name = "inventory/menuitem_list.html"
+    template_name = "inventory/menu.html"
 
 class PurchaseList(ListView):
     model = Purchase
