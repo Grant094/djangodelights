@@ -26,7 +26,7 @@ class PurchaseList(ListView):
     template_name = "inventory/purchases.html"
 
 class ReportView(TemplateView):
-    template_name = "inventory/reports.html"
+    template_name = "inventory/report.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

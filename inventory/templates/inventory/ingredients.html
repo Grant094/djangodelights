@@ -9,6 +9,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Quantity</th>
+                    <th>Price Per Unit</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,7 @@
                 <tr>
                     <td>{{ ingredient.name }}</td>
                     <td>{{ ingredient.quantity }} {{ ingredient.unit }}</td>
+                    <td>{{ ingredient.unit_price }}</td>
                 </tr>
             {% endfor %}
             </tbody>

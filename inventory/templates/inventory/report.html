@@ -1,0 +1,25 @@
+{% extends 'inventory/base.html' %}
+{% load static %} 
+{% block title %}Django Delights{% endblock %}
+{% block content %}
+    <div>
+        <h2>Revenue, Cost, and Profit Report</h2>
+        <table>
+            <tr>
+                <th align="left">Revenue</th>
+                <td></td>
+                <td>{{ revenue }}</td>
+            </tr>
+            <tr>
+                <th align="left">Total Cost</th>
+                <td>-</td>
+                <td>{{ total_cost }}</td>
+            </tr>
+            <tr>
+                <th align="left">Profit</th>
+                <td>=</td>
+                <td>{{ profit }}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
