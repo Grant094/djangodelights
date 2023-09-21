@@ -14,21 +14,6 @@ def logout_view(request):
     return redirect("/")
 
 @login_required
-def login_view(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect("home")
-        else:
-            return HttpResponse("invalid credentials")
-    return render(request, "registration/login.html")
-
-@login_required
 def home(request):
     return render(request, "inventory/home.html")
 
