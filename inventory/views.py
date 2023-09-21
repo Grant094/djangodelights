@@ -1,57 +1,79 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def logout_view(request):
+    logout(request)
+    return redirect("/")
+
+@login_required
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+        else:
+            return HttpResponse("invalid credentials")
+    return render(request, "registration/login.html")
+
+@login_required
 def home(request):
     return render(request, "inventory/home.html")
 
-class IngredientList(ListView):
+class IngredientList(LoginRequiredMixin, ListView):
     model = Ingredient
     template_name = "inventory/ingredients.html"
 
-class IngredientCreate(CreateView):
+class IngredientCreate(LoginRequiredMixin, CreateView):
     model = Ingredient
     form_class = IngredientCreateForm
     template_name = "inventory/ingredient_create_form.html"
 
-class IngredientUpdate(UpdateView):
+class IngredientUpdate(LoginRequiredMixin, UpdateView):
     model = Ingredient
     form_class = IngredientUpdateForm
     template_name = "inventory/ingredient_update_form.html"
 
-class IngredientDelete(DeleteView):
+class IngredientDelete(LoginRequiredMixin, DeleteView):
     model = Ingredient
     template_name = "inventory/ingredient_delete_form.html"
 
-class MenuItemList(ListView):
+class MenuItemList(LoginRequiredMixin, ListView):
     model = MenuItem
     template_name = "inventory/menu.html"
 
-class MenuItemCreate(CreateView):
+class MenuItemCreate(LoginRequiredMixin, CreateView):
     model = MenuItem
     form_class = MenuItemCreateForm
     template_name = "inventory/menuitem_create_form.html"
 
-class RecipeRequirementCreate(CreateView):
+class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     model = RecipeRequirement
     form_class = RecipeRequirementCreateForm
     template_name = "inventory/reciperequirement_create_form.html"
 
-class PurchaseList(ListView):
+class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
     template_name = "inventory/purchases.html"
 
-class PurchaseCreate(CreateView):
+class PurchaseCreate(LoginRequiredMixin, CreateView):
     model = Purchase
     form_class = PurchaseCreateForm
     template_name = "inventory/purchase_create.html"
 
-class ReportView(TemplateView):
+class ReportView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/report.html"
 
     def get_context_data(self, **kwargs):
