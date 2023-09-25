@@ -26,6 +26,11 @@ class RecipeRequirementCreateForm(forms.ModelForm):
         model = RecipeRequirement
         fields = "__all__"
 
+class RecipeRequirementUpdateForm(forms.ModelForm):
+    class Meta:
+        model = RecipeRequirement
+        fields = "__all__"
+
 class PurchaseCreateForm(forms.ModelForm):
     class Meta:
         model = Purchase

@@ -9,13 +9,15 @@
                 <th>Menu Item</th>
                 <th>Ingredient</th>
                 <th>Amount</th>
+                <th>Update</th>
             </thead>
             <tbody>
                 {% for requirement in object_list %}
                 <tr>
                     <td>{{ requirement.menu_item.title }}</td>
                     <td>{{ requirement.ingredient.name }}</td>
-                    <td>{{ requirement.quantity }}</td>
+                    <td>{{ requirement.quantity }} {{ requirement.ingredient.unit }}</td>
+                    <td><a href="{% url 'reciperequirementupdate' requirement.pk %}">Update</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

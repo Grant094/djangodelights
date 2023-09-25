@@ -63,6 +63,11 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     form_class = RecipeRequirementCreateForm
     template_name = "inventory/reciperequirement_create_form.html"
 
+class RecipeRequirementUpdate(LoginRequiredMixin, UpdateView):
+    model = RecipeRequirement
+    form_class = RecipeRequirementUpdateForm
+    template_name = "inventory/reciperequirement_update_form.html"
+
 class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
     template_name = "inventory/purchases.html"
