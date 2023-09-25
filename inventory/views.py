@@ -68,6 +68,11 @@ class RecipeRequirementUpdate(LoginRequiredMixin, UpdateView):
     form_class = RecipeRequirementUpdateForm
     template_name = "inventory/reciperequirement_update_form.html"
 
+class RecipeRequirementDelete(LoginRequiredMixin, DeleteView):
+    model = RecipeRequirement
+    template_name = "inventory/reciperequirement_delete_form.html"
+    success_url = "/reciperequirements"
+
 class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
     template_name = "inventory/purchases.html"

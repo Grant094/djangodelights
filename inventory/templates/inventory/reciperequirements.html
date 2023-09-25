@@ -10,6 +10,7 @@
                 <th>Ingredient</th>
                 <th>Amount</th>
                 <th>Update</th>
+                <th>Delete</th>
             </thead>
             <tbody>
                 {% for requirement in object_list %}
@@ -18,6 +19,7 @@
                     <td>{{ requirement.ingredient.name }}</td>
                     <td>{{ requirement.quantity }} {{ requirement.ingredient.unit }}</td>
                     <td><a href="{% url 'reciperequirementupdate' requirement.pk %}">Update</a></td>
+                    <td><a href="{% url 'reciperequirementdelete' requirement.pk %}">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
