@@ -44,6 +44,11 @@ class MenuItemCreate(LoginRequiredMixin, CreateView):
     form_class = MenuItemCreateForm
     template_name = "inventory/menuitem_create_form.html"
 
+class MenuItemUpdate(LoginRequiredMixin, UpdateView):
+    model = MenuItem
+    form_class = MenuItemUpdateForm
+    template_name = "inventory/menuitem_update_form.html"
+
 class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     model = RecipeRequirement
     form_class = RecipeRequirementCreateForm

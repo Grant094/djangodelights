@@ -15,7 +15,7 @@
             <tbody>
             {% for item in object_list %}
                 <tr>
-                    <td>{{ item.title }}</td>
+                    <td><a href="{% url 'menuitemupdate' item.pk %}">{{ item.title }}</a></td>
                     <td align="center">${{ item.price }}</td>
                 </tr>
             {% endfor %}
