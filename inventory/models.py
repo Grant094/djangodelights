@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Ingredient(models.Model):
@@ -11,7 +12,7 @@ class Ingredient(models.Model):
         return str(self.quantity) + " " + self.unit + " of " + self.name
 
     def get_absolute_url(self):
-        return "../ingredients"
+        return reverse("ingredients")
 
 class MenuItem(models.Model):
     title = models.CharField(max_length=30)
@@ -29,7 +30,7 @@ class MenuItem(models.Model):
         return to_return
     
     def get_absolute_url(self):
-        return "../menuitems"
+        return reverse("menuitems")
 
 class RecipeRequirement(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
@@ -40,7 +41,7 @@ class RecipeRequirement(models.Model):
         return str(self.quantity) + " " + self.ingredient.unit + " " + self.ingredient.name + " for " + self.menu_item.title
 
     def get_absolute_url(self):
-        return "../"
+        return reverse("home")
 
 class Purchase(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
@@ -50,4 +51,4 @@ class Purchase(models.Model):
         return self.menu_item.title + " at " + str(self.timestamp)
 
     def get_absolute_url(self):
-        return "../purchases"
+        return reverse("purchases")
