@@ -82,6 +82,8 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     form_class = PurchaseCreateForm
     template_name = "inventory/purchase_create.html"
 
+# PurchaseUpdate intentionally omitted since any improper purchases should just be deleted
+
 class PurchaseDelete(LoginRequiredMixin, DeleteView):
     model = Purchase
     template_name = "inventory/purchase_delete_form.html"
