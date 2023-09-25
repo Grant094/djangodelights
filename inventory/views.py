@@ -49,6 +49,11 @@ class MenuItemUpdate(LoginRequiredMixin, UpdateView):
     form_class = MenuItemUpdateForm
     template_name = "inventory/menuitem_update_form.html"
 
+class MenuItemDelete(LoginRequiredMixin, DeleteView):
+    model = MenuItem
+    template_name = "inventory/menuitem_delete_form.html"
+    success_url = "/menuitems"
+
 class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     model = RecipeRequirement
     form_class = RecipeRequirementCreateForm

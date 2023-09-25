@@ -10,6 +10,7 @@
                 <tr>
                     <th>Item</th>
                     <th>Price</th>
+                    <th>Delete?</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><a href="{% url 'menuitemupdate' item.pk %}">{{ item.title }}</a></td>
                     <td align="center">${{ item.price }}</td>
+                    <td><a href="{% url 'menuitemdelete' item.pk %}">Delete</a></td>
                 </tr>
             {% endfor %}
             </tbody>
