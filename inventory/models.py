@@ -41,7 +41,7 @@ class RecipeRequirement(models.Model):
         return str(self.quantity) + " " + self.ingredient.unit + " " + self.ingredient.name + " for " + self.menu_item.title
 
     def get_absolute_url(self):
-        return reverse("home")
+        return reverse("reciperequirements")
 
 class Purchase(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
