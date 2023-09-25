@@ -82,6 +82,11 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     form_class = PurchaseCreateForm
     template_name = "inventory/purchase_create.html"
 
+class PurchaseDelete(LoginRequiredMixin, DeleteView):
+    model = Purchase
+    template_name = "inventory/purchase_delete_form.html"
+    success_url = "/purchases"
+
 class ReportView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/report.html"
 
