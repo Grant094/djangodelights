@@ -1,0 +1,24 @@
+{% extends 'inventory/base.html' %}
+{% load static %} 
+{% block content %}
+    <div>
+        <h2>Recipe Requirements</h2>
+        <h3><a href="{% url 'reciperequirementcreate' %}">Add</a></h3>
+        <table>
+            <thead>
+                <th>Menu Item</th>
+                <th>Ingredient</th>
+                <th>Amount</th>
+            </thead>
+            <tbody>
+                {% for requirement in object_list %}
+                <tr>
+                    <td>{{ requirement.menu_item.title }}</td>
+                    <td>{{ requirement.ingredient.name }}</td>
+                    <td>{{ requirement.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
