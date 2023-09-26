@@ -34,6 +34,7 @@ class IngredientUpdate(LoginRequiredMixin, UpdateView):
 class IngredientDelete(LoginRequiredMixin, DeleteView):
     model = Ingredient
     template_name = "inventory/ingredient_delete_form.html"
+    success_url = "/ingredients"
 
 class MenuItemList(LoginRequiredMixin, ListView):
     model = MenuItem
