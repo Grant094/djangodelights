@@ -83,6 +83,20 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     form_class = PurchaseCreateForm
     template_name = "inventory/purchase_create.html"
 
+    def post(self, request):
+        menu_item_id = request.POST["menu_item"]
+        menu_item = MenuItem.objects.get(pk=menu_item_id)
+        requirements = menu_item.reciperequirement_set
+        purchase = Purchase(menu_item=menu_item)
+
+        for requirement in requirements.all():
+            required_ingredient = requirement.ingredient
+            required_ingredient.quantity -= requirement.quantity
+            required_ingredient.save()
+
+        purchase.save()
+        return redirect("/purchases")
+
 # PurchaseUpdate intentionally omitted since any improper purchases should just be deleted
 
 class PurchaseDelete(LoginRequiredMixin, DeleteView):
