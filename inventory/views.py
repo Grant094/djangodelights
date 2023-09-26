@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
@@ -89,6 +90,15 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
         requirements = menu_item.reciperequirement_set
         purchase = Purchase(menu_item=menu_item)
 
+        # check if there is enough of each ingredient in inventory
+        for requirement in requirements.all():
+            if requirement.quantity > requirement.ingredient.quantity:
+                context = {
+                    'insufficient_ingredient': requirement.ingredient,
+                }
+                return render(request, 'inventory/purchase_create.html', context)
+
+        # actually use ingredients
         for requirement in requirements.all():
             required_ingredient = requirement.ingredient
             required_ingredient.quantity -= requirement.quantity

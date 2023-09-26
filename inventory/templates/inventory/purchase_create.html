@@ -3,7 +3,11 @@
 {% block content %}
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit"/>
+    {% if insufficient_ingredient %}
+        <p>You do not have enough {{ insufficient_ingredient }}</p>
+    {% else %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit"/>
+    {% endif %}
 </form>
 {% endblock %}
