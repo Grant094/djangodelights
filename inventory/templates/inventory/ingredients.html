@@ -19,11 +19,12 @@
                 <tr>
                     <td><a href="{% url 'ingredientupdate' ingredient.pk %}">{{ ingredient.name }}</a></td>
                     <td>{{ ingredient.quantity }} {{ ingredient.unit }}</td>
-                    <td>{{ ingredient.unit_price }}</td>
+                    <td>{{ ingredient.unit_price|floatformat:2 }}</td>
                     <td><a href="{% url 'ingredientdelete' ingredient.pk %}">Delete</a></td>
                 </tr>
             {% endfor %}
             </tbody>
+            <p id="test"></p>
         </table>
     </div>
 {% endblock %}
