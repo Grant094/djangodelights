@@ -9,7 +9,6 @@ class Ingredient(models.Model):
     unit_price = models.FloatField(default=0.0)
 
     def __str__(self):
-        # return str(self.quantity) + " " + self.unit + " of " + self.name
         stringToReturn = self.name + " (" + str(self.quantity)
         if (self.unit):
             stringToReturn += " " + self.unit
