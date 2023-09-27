@@ -11,15 +11,17 @@
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>Price Per Unit</th>
+                    <th>Update</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
             {% for ingredient in object_list %}
                 <tr>
-                    <td><a href="{% url 'ingredientupdate' ingredient.pk %}">{{ ingredient.name }}</a></td>
+                    <td>{{ ingredient.name }}</td>
                     <td>{{ ingredient.quantity }} {{ ingredient.unit }}</td>
                     <td>{{ ingredient.unit_price|floatformat:2 }}</td>
+                    <td><a href="{% url 'ingredientupdate' ingredient.pk}">Update</a></td>
                     <td><a href="{% url 'ingredientdelete' ingredient.pk %}">Delete</a></td>
                 </tr>
             {% endfor %}
