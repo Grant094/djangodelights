@@ -9,7 +9,12 @@ class Ingredient(models.Model):
     unit_price = models.FloatField(default=0.0)
 
     def __str__(self):
-        return str(self.quantity) + " " + self.unit + " of " + self.name
+        # return str(self.quantity) + " " + self.unit + " of " + self.name
+        stringToReturn = self.name + " (" + str(self.quantity)
+        if (self.unit):
+            stringToReturn += " " + self.unit
+        stringToReturn += ")"
+        return stringToReturn
 
     def get_absolute_url(self):
         return reverse("ingredients")
